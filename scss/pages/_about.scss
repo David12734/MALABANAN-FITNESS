@@ -1,19 +1,26 @@
 @use "../abstract/" as *;
 
 .aboutBanner {
-  padding: 4rem 0 6rem;
+  padding: 4rem 0;
   &__top {
     @include between;
     margin-bottom: 1rem;
     h1 {
       line-height: 5rem;
       margin-top: 2rem;
-      max-width: 48rem;
     }
     &--right {
-      max-width: 40rem;
+      width: 80rem;
+      @include mediaQuery(520px) {
+        width: unset;
+      }
+    }
+    @include mediaQuery(520px) {
+      flex-direction: column;
+      text-align: center;
     }
   }
+
   &__bottom {
     &--a {
       grid-area: a;
@@ -37,48 +44,60 @@
     grid-template-areas:
       "a c"
       "b c";
-    gap: 5rem;
+    gap: 1rem;
+
+    @include mediaQuery(520px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
 .aboutValues {
-  padding: 6rem 0;
-  color: $clr--light;
-  .title {
-    max-width: 56rem;
-    margin: 0 auto 3rem;
-    h3 {
-      color: $clr--light;
-      margin-bottom: 0.75rem;
-    }
-    p {
-      margin: 0 auto;
+  padding: 4rem 20rem;
+
+  &__title {
+    color: $clr--light;
+    display: flex;
+    flex-direction: column;
+    @include centerAll;
+    margin-bottom: 4rem;
+    h2 {
       max-width: 40rem;
-      text-align: center;
-      font-size: 1.15rem;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.88);
+    }
+    @include mediaQuery(520px) {
+      margin-bottom: 2rem;
     }
   }
-  &__cards {
-    @include gridFixed(2, 2rem);
-    max-width: 70rem;
-    margin: 0 auto;
-    .cardIcon {
-      background-color: $clr--light;
-      color: $clr--dark;
-      flex-direction: row;
-      text-align: left;
-      gap: 5rem;
-      img {
-        width: 30rem;
-      }
-      &__details {
-        p {
-          font-size: 1.15rem;
-          line-height: 1.6;
-        }
-      }
+  .cardIcon {
+    @include centerAll;
+    gap: 1.2rem;
+    background-color: $clr--light;
+
+    h4 {
+      text-align: center;
     }
+    p {
+      text-align: center;
+    }
+  }
+
+  &__cards {
+    @include gridFixed(2, 1rem);
+    @include mediaQuery(520px) {
+      grid-template-columns: unset;
+    }
+  }
+
+  @include mediaQuery(520px) {
+    padding: 4rem 0;
+  }
+}
+
+.aboutLocation {
+  padding: 4rem 0;
+
+  &__map {
+    @include centerAll;
   }
 }

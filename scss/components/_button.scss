@@ -35,4 +35,9 @@
     display: flex;
     align-items: center;
     gap: 3rem;
+    @include mediaQuery(520px){
+      gap: 1rem;
+      flex-direction: column;
+    
+    }
 }

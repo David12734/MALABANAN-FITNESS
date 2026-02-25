@@ -5,11 +5,23 @@
   padding: 4rem 0;
   position: relative;
   &__title {
-    min-width: 50rem;
+    max-width: 50rem;
     margin-bottom: 2rem;
+    @include mediaQuery(520px) {
+      align-items: center;
+      margin-top: 3rem;
+      h1,
+      p {
+        text-align: center;
+      }
+    }
   }
   &__wrapper {
-    @include gridCustom(1.5fr 1.5fr, 5rem);
+    @include gridCustom(1.5fr 1fr, 5rem);
+    @include mediaQuery(520px) {
+      grid-template-columns: unset;
+      justify-content: center;
+    }
   }
   &__left {
     form {
@@ -34,6 +46,7 @@
         color: $clr--light;
       }
     }
+
     &--name {
       display: flex;
       flex-direction: row;
@@ -46,48 +59,67 @@
     border: 1px solid $clr--dark;
     height: fit-content;
     width: fit-content;
-    &::after{
-        position: absolute;
-        display: inline-block;
-        content: "";
-        background-color: $clr--dark;
-        width: 45rem;
-        height: 90vh;
-        right: 1rem;
-        bottom: 1rem;
-        z-index: -9;
+    &::after {
+      position: absolute;
+      display: inline-block;
+      content: " ";
+      background-color: $clr--dark;
+      width: 40rem;
+      height: 90vh;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: -9;
+      @include mediaQuery(520px) {
+        width: 0;
+      }
     }
   }
 }
 
 .contactFaq {
-    padding: 4rem 0;
-    &__wrapper {
-        display: flex;
-        flex-direction: row;
-        gap: 5rem;
+  padding: 4rem 0;
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    @include mediaQuery(520px) {
+      flex-direction: column;
     }
-    &__left {
-        max-width: 30rem;
-        h2 {
-            margin-bottom: 2rem;
-        }
+  }
+  &__left {
+    max-width: 30rem;
+    margin-bottom: 2rem;
+    h2 {
+      margin-bottom: 2rem;
     }
-    &__item {
-        border-bottom: 1px solid $clr--gray;
-        padding: 1.5rem 0;
-        &--question{
-            @include between;
-            cursor: pointer;
-            i{
-                transition: 0.5 ease;
-            }
-        }
-        &--answer {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: 0.5 ease;
-        }
+    @include mediaQuery(520px) {
+      text-align: center;
     }
+  }
+  &__item {
+    border-bottom: 1px solid $clr--gray;
+    padding: 1.5rem 0;
+    &--question {
+      @include between;
+      cursor: pointer;
+      i {
+        transition: 0.5s ease;
+      }
+    }
+    &.active {
+      i {
+        transform: rotate(180deg);
+      }
+      .contactFaq__item--answer {
+        max-height: 1000px;
+      }
+    }
+
+    &--answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.5s ease;
+      margin-top: 1rem;
+    }
+  }
 }
